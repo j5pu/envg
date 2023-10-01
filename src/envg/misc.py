@@ -1,12 +1,10 @@
-"""
-System Environment Variables
-"""
+"""System Environment Variables."""
 __all__ = (
     "FORCE_COLOR",
     "COLORIZE"
 )
 
-from .main import environment
+from envg.main import environment
 
 COLORIZE: bool
 """

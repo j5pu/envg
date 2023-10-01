@@ -1,6 +1,4 @@
-"""
-Huti environment package
-"""
+"""Huti environment package."""
 __all__ = (
     "parse",
     "environment",
@@ -15,9 +13,10 @@ from pathlib import Path
 from urllib.parse import ParseResult
 
 
-def parse(variable: str = "USER") -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str | None:
-    """
-    Parses variable from environment
+def parse(  # noqa: PLR0911
+    variable: str = "USER",
+) -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str | None:
+    """Parses variable from environment.
 
     Parses:
         - bool: 1, 0, True, False, yes, no, on, off (case insensitive)
@@ -89,26 +88,24 @@ def parse(variable: str = "USER") -> bool | Path | ParseResult | IPv4Address | I
     if value := os.environ.get(variable):
         if variable in ("SUDO_UID", "SUDO_GID"):
             return int(value)
-        elif value.lower() in ['1', 'true', 'yes', 'on']:
+        if value.lower() in ["1", "true", "yes", "on"]:
             return True
-        elif value.lower() in ['0', 'false', 'no', 'off']:
+        if value.lower() in ["0", "false", "no", "off"]:
             return False
-        elif value[0] in ['/', '~', '.'] and variable != "PATH":
+        if value[0] in ["/", "~", "."] and variable != "PATH":
             return Path(value)
-        elif '://' in value or '@' in value:
+        if "://" in value or "@" in value:
             return urllib.parse.urlparse(value)
-        else:
-            try:
-                return ipaddress.ip_address(value)
-            except ValueError:
-                if value.isnumeric():
-                    return int(value)
+        try:
+            return ipaddress.ip_address(value)
+        except ValueError:
+            if value.isnumeric():
+                return int(value)
     return value
 
 
 def environment() -> None:
-    """
-    Parses all globals in :obj:`__all__` of the module imported from environment variables
+    """Parses all globals in :obj:`__all__` of the module imported from environment variables.
 
     Parses:
         - bool: 1, 0, True, False, yes, no, on, off (case insensitive)
@@ -126,6 +123,6 @@ def environment() -> None:
     Returns:
         None
     """
-    data = sys._getframe(1).f_globals
+    data = sys._getframe(1).f_globals  # noqa: SLF001
     for variable in data["__all__"]:
         data[variable] = parse(variable)

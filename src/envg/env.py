@@ -1,11 +1,5 @@
-"""
-Hutil Env Module
-"""
-__all__ = (
-    "Env",
-    "parse_env",
-    "parse_str"
-)
+"""Hutil Env Module."""
+__all__ = ("Env", "parse_env", "parse_str")
 
 import ipaddress
 import os
@@ -20,8 +14,7 @@ from urllib.parse import ParseResult
 # noinspection LongLine,SpellCheckingInspection
 @dataclass
 class Env:
-    """
-    GitHub Actions Variables Class
+    """GitHub Actions Variables Class.
 
     See Also: `Environment variables
     <https://docs.github.com/en/enterprise-cloud@latest/actions/learn-github-actions/environment-variables>`_
@@ -38,6 +31,7 @@ class Env:
         you can define the value as a job output, see `Syntax
         <https://docs.github.com/en/enterprise-cloud@latest/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idoutputs>`_.
     """
+
     CI: bool | str | None = field(default=None, init=False)
     """Always set to ``true`` in a GitHub Actions environment."""
 
@@ -370,46 +364,63 @@ class Env:
     PYCHARM_VM_OPTIONS: str | None = field(default=None, init=False)
     PATH: str | None = field(default=None, init=False)
 
-    _parse_as_int: ClassVar[tuple[str, ...]] = ("GITHUB_RUN_ATTEMPT", "GITHUB_RUN_ID", "GITHUB_RUN_NUMBER",)
-    _parse_as_int_suffix: ClassVar[tuple[str, ...]] = ("_GID", "_JOBS", "_PORT", "_UID",)
+    _parse_as_int: ClassVar[tuple[str, ...]] = (
+        "GITHUB_RUN_ATTEMPT",
+        "GITHUB_RUN_ID",
+        "GITHUB_RUN_NUMBER",
+    )
+    _parse_as_int_suffix: ClassVar[tuple[str, ...]] = (
+        "_GID",
+        "_JOBS",
+        "_PORT",
+        "_UID",
+    )
     parsed: InitVar[bool] = True
 
     def __post_init__(self, parsed: bool) -> None:
-        """
-        Instance of Env class
+        """Instance of Env class.
 
         Args:
             parsed: Parse the environment variables using :func:`mreleaser.parse_str`,
                 except :func:`Env.as_int` (default: True)
         """
-        self.__dict__.update({k: self.as_int(k, v) for k, v in os.environ.items()} if parsed else os.environ)
+        self.__dict__.update(
+            {k: self.as_int(k, v) for k, v in os.environ.items()}
+            if parsed
+            else os.environ
+        )
 
     def __contains__(self, item):
+        """Check if item is in self.__dict__."""
         return item in self.__dict__
 
     def __getattr__(self, name: str) -> str | None:
+        """Get attribute from self.__dict__ if exists, otherwise return None."""
         if name in self:
             return self.__dict__[name]
         return None
 
     def __getattribute__(self, name: str) -> str | None:
+        """Get attribute from self.__dict__ if exists, otherwise return None."""
         if hasattr(self, name):
             return super().__getattribute__(name)
         return None
 
     def __getitem__(self, item: str) -> str | None:
+        """Get item from self.__dict__ if exists, otherwise return None."""
         return self.__getattr__(item)
 
     @classmethod
-    def as_int(cls, key: str, value: str = "") -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str:
-        """
-        Parse as int if environment variable should be forced to be parsed as int checking if:
+    def as_int(
+        cls, key: str, value: str = ""
+    ) -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str:
+        """Parse as int if environment variable should be forced to be parsed as int checking if:.
 
             - has value,
             - key in :data:`Env._parse_as_int` or
             - key ends with one of the items in :data:`Env._parse_as_int_suffix`.
 
-        Args
+        Args:
             key: Environment variable name.
             value: Environment variable value (default: "").
 
@@ -427,9 +438,11 @@ class Env:
         return int(value) if convert and value.isnumeric() else parse_str(value)
 
 
-def parse_env(name: str = "USER") -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str | None:
-    """
-    Parses variable from environment using :func:`mreleaser.parse_str`,
+def parse_env(
+    name: str = "USER",
+) -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str | None:
+    """Parses variable from environment using :func:`mreleaser.parse_str`,.
+
     except ``SUDO_UID`` or ``SUDO_GID`` which are parsed as int instead of bool.
 
     Arguments:
@@ -500,9 +513,10 @@ def parse_env(name: str = "USER") -> bool | Path | ParseResult | IPv4Address | I
     return value
 
 
-def parse_str(data: Any | None = None) -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str | None:
-    """
-    Parses str or data.__str__()
+def parse_str(  # noqa: PLR0911
+    data: Any | None = None,
+) -> bool | Path | ParseResult | IPv4Address | IPv6Address | int | str | None:
+    """Parses str or data.__str__().
 
     Parses:
         - bool: 1, 0, True, False, yes, no, on, off (case insensitive)
@@ -550,19 +564,23 @@ def parse_str(data: Any | None = None) -> bool | Path | ParseResult | IPv4Addres
         if not isinstance(data, str):
             data = str(data)
 
-        if data.lower() in ['1', 'true', 'yes', 'on']:
+        if data.lower() in ["1", "true", "yes", "on"]:
             return True
-        elif data.lower() in ['0', 'false', 'no', 'off']:
+        if data.lower() in ["0", "false", "no", "off"]:
             return False
-        elif '://' in data or '@' in data:
+        if "://" in data or "@" in data:
             return urllib.parse.urlparse(data)
-        elif ((data[0] in ['/', '~'] or (len(data) >= 2 and f"{data[0]}{data[1]}" == "./"))
-              and ":" not in data) or data == ".":
+        if (
+            (
+                data[0] in ["/", "~"]
+                or (len(data) >= 2 and f"{data[0]}{data[1]}" == "./")  # noqa: PLR2004
+            )
+            and ":" not in data
+        ) or data == ".":
             return Path(data)
-        else:
-            try:
-                return ipaddress.ip_address(data)
-            except ValueError:
-                if data.isnumeric():
-                    return int(data)
+        try:
+            return ipaddress.ip_address(data)
+        except ValueError:
+            if data.isnumeric():
+                return int(data)
     return data

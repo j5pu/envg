@@ -1,8 +1,5 @@
 .PHONY: docs tests venv
 
-brew:
-	@proj $@ --command gh
-
 browser:
 	@$@
 

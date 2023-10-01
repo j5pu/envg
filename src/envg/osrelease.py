@@ -1,6 +1,4 @@
-"""
-System Environment Variables
-"""
+"""System Environment Variables."""
 __all__ = (
     "ALPINE",
     "ALPINE_LIKE",
@@ -46,7 +44,7 @@ __all__ = (
 
 from pathlib import Path
 
-from .main import environment
+from envg.main import environment
 
 ALPINE: bool
 """'DIST_ID' is 'alpine' and not: nix or busybox"""

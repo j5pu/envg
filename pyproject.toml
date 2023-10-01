@@ -19,8 +19,6 @@ requires = [
     "setuptools_scm >= 8.0.3, <9",
     "wheel >= 0.41.2, <1"
 ]
-#build-backend = "pproj.backend"
-#backend-path = ["."]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]

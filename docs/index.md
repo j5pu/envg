@@ -14,7 +14,6 @@ hidden:
 maxdepth: 1
 ---
 
-usage
 reference
 License <license>
 ```

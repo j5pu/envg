@@ -10,6 +10,7 @@ ignore = [
     "S602", # `subprocess` call with `shell=True` identified, security issue
     "S603", # `subprocess` call: check for execution of untrusted input
     "S607", # Starting a process with a partial executable path
+    "SLF001", # Access to protected
     "T201", # `print` found
     "TRY003", # long messages outside the exception class
     "W505", # Doc line too long (102 > 100 characters)

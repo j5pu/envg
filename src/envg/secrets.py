@@ -1,6 +1,4 @@
-"""
-System Environment Variables
-"""
+"""System Environment Variables."""
 __all__ = (
     "GIT",
     "INTERNET",
@@ -72,7 +70,7 @@ __all__ = (
     "VULTR_API_KEY",
 )
 
-from .main import environment
+from envg.main import environment
 
 GIT: str
 """GitHub User"""

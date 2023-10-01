@@ -1,6 +1,4 @@
-"""
-System Environment Variables
-"""
+"""System Environment Variables."""
 __all__ = (
     "LOGNAME",
     "OLDPWD",
@@ -18,7 +16,7 @@ __all__ = (
 
 from pathlib import Path
 
-from .main import environment
+from envg.main import environment
 
 LOGNAME: str
 OLDPWD: Path
