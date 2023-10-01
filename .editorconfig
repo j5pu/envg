@@ -1,5 +1,2 @@
-[project.json]
-max_line_length = off
-
-[pth.json]
+[README.md]
 max_line_length = off
