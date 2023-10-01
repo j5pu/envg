@@ -123,6 +123,6 @@ def environment() -> None:
     Returns:
         None
     """
-    data = sys._getframe(1).f_globals  # noqa: SLF001
+    data = sys._getframe(1).f_globals
     for variable in data["__all__"]:
         data[variable] = parse(variable)
