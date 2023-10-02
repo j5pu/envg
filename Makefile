@@ -3,7 +3,7 @@
 browser:
 	@$@
 
-build:  # run: clean and venv (requirements)
+build:  # run: write, docs, clean and venv (requirements)
 	@$@
 
 clean:
@@ -30,7 +30,7 @@ next:
 pproj:
 	@python3 -m pip install --upgrade -q $@
 
-publish:  # runs: tests (build (clean, venv (requirements)), pytest, ruff and tox), commit, tag, push, twine and clean
+publish:  # runs: docs, tests (build (clean, venv (requirements)), pytest, ruff & tox), commit, tag, push, twine & clean
 	@$@
 
 pyenv:
