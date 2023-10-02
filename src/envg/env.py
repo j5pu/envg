@@ -161,9 +161,8 @@ class Env:
 
     For example, ``/home/runner/work/_temp/_runner_file_commands/add_path_899b9445-ad4a-400c-aa89-249f18632cf5``.
 
-    For more information, see
-    `Workflow commands for GitHub Actions.
-     <https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/workflow-commands-for-github-actions#adding-a-system-path>`_
+    For more information, see `Workflow commands for GitHub Actions.
+    <https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/workflow-commands-for-github-actions#adding-a-system-path>`_
     """
 
     GITHUB_REF: str | None = field(default=None, init=False)
@@ -261,8 +260,7 @@ class Env:
     The commit SHA that triggered the workflow.
 
     The value of this commit SHA depends on the event that triggered the workflow.
-    For more information, see `Events that trigger workflows.
-    <https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/events-that-trigger-workflows>`_
+    For more information, see `Events that trigger workflows. <https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/events-that-trigger-workflows>`_
 
     For example, ``ffac537e6cbbf934b08745a378932722df287a53``.
     """
