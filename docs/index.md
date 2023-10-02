@@ -6,8 +6,6 @@ end-before: <!-- github-only -->
 
 [license]: license
 
-[command-line reference]: usage
-
 ```{toctree}
 ---
 hidden:

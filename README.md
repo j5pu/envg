@@ -31,14 +31,10 @@ You can install _envg_ via [pip] from [PyPI]:
 $ pip install envg
 ```
 
-## Usage
-
-Please see the [Command-line Reference] for details.
-
 ## License
 
 Distributed under the terms of the [MIT license][license],
-_pproj_ is free and open source software.
+_envg_ is free and open source software.
 
 ## Issues
 
@@ -58,5 +54,3 @@ please [file an issue] along with a detailed description.
 <!-- github-only -->
 
 [license]: https://github.com/j5pu/pproj/blob/main/LICENSE
-
-[command-line reference]: https://pproj.readthedocs.io/en/latest/usage.html
