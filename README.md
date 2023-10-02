@@ -25,10 +25,10 @@
 
 ## Installation
 
-You can install _Pproj_ via [pip] from [PyPI]:
+You can install _envg_ via [pip] from [PyPI]:
 
 ```console
-$ pip install pproj
+$ pip install envg
 ```
 
 ## Usage
