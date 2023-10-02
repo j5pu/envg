@@ -1,8 +1,8 @@
 # Reference
 
-## pproj
+## envg
 
 ```{eval-rst}
-.. automodule:: pproj
+.. automodule:: envg
    :members:
 ```

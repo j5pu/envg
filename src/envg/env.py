@@ -155,7 +155,6 @@ class Env:
     """
 
     GITHUB_PATH: Path | str | None = field(default=None, init=False)
-    # noinspection LongLine
     """
     The path on the runner to the file that sets system PATH variables from workflow commands.
     This file is unique to the current step and changes for each step in a job.
