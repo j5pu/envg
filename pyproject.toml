@@ -1,5 +1,7 @@
 [project]
-
+dependencies = [
+    "nodeps",
+]
 [project.optional-dependencies]
 dev = [
     "pproj[all]",
