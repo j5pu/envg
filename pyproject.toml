@@ -1,12 +1,27 @@
 [project]
+
 dependencies = [
-    "nodeps",
+    "nodeps"
 ]
+name = "envg"
+description = "Environment varriables as globals"
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.11"
 [project.optional-dependencies]
 dev = [
     "pproj[all]",
 ]
 
+[[project.authors]]
+name = "José Antonio Puértolas Montañés"
+email = "63794670+j5pu@users.noreply.github.com"
+
+[project.urls]
+Homepage = "https://github.com/j5pu/envg"
+
+[project.license]
+text = "MIT"
 [build-system]
 requires = [
     "setuptools >= 68.2.2, <69",

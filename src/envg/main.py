@@ -1,17 +1,12 @@
-"""Huti environment package."""
+"""Environment package."""
 __all__ = (
     "environment",
 )
 
-import ipaddress
-import os
 import sys
-import urllib.parse
-from ipaddress import IPv4Address, IPv6Address
-from pathlib import Path
-from urllib.parse import ParseResult
 
 from nodeps import Env
+
 
 def environment() -> None:
     """Parses all globals in :obj:`__all__` of the module imported from environment variables.
@@ -25,6 +20,7 @@ def environment() -> None:
         - others as string
 
     Examples:
+        >>> from nodeps import Path
         >>> from envg.default import *
         >>> assert isinstance(USER, str)
         >>> assert isinstance(PWD, Path)

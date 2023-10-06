@@ -1,4 +1,4 @@
-"""envg environment package."""
+"""Envg Environment Package."""
 from envg import default, main, misc, osrelease, secrets, system
 from envg.default import *  # noqa: F403
 from envg.main import *  # noqa: F403
@@ -15,5 +15,3 @@ __all__ = (
     + secrets.__all__
     + system.__all__
 )
-
-# TODO: parcheo esto con el python-decouple que lea antes el .env
