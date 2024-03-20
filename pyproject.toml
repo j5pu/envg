@@ -1,10 +1,6 @@
 [project]
-
-dependencies = [
-    "nodeps"
-]
 name = "envg"
-description = "Environment varriables as globals"
+description = "Environment variables as globals"
 dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.11"
