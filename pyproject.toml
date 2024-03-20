@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 [project.optional-dependencies]
 dev = [
-    "pproj[all]",
+    "nodeps[full]",
 ]
 
 [[project.authors]]
@@ -24,6 +24,7 @@ Homepage = "https://github.com/j5pu/envg"
 text = "MIT"
 [build-system]
 requires = [
+    "nodeps"
     "setuptools >= 68.2.2, <69",
     "setuptools_scm >= 8.0.3, <9",
     "wheel >= 0.41.2, <1"
